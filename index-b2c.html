@@ -725,7 +725,7 @@ footer{background:var(--ivory-2);padding:80px 0 30px;border-top:1px solid var(--
         <a href="#home" class="logo">VELA <span>APPARELS</span></a>
         <p style="margin-top:16px;font-size:13px;color:var(--stone);max-width:300px;line-height:1.7;">Premium everyday urban clothing &amp; loungewear designed in Bengaluru. Comfort without compromise.</p>
         <div class="footer-social">
-          <a href="#" aria-label="Instagram">IG</a><a href="#" aria-label="Facebook">FB</a><a href="#" aria-label="YouTube">YT</a>
+          <a href="javascript:void(0)" aria-label="Instagram">IG</a><a href="javascript:void(0)" aria-label="Facebook">FB</a><a href="javascript:void(0)" aria-label="YouTube">YT</a>
         </div>
       </div>
       <div>
@@ -1113,26 +1113,33 @@ document.addEventListener('DOMContentLoaded', ()=> setTimeout(dismissLoader, 800
 setTimeout(dismissLoader, 1500);
 
 /* ---------- SCROLL PROGRESS + FLOAT TOP + HERO PARALLAX TO LEFT ---------- */
+let scrollTicking = false;
 window.addEventListener('scroll', ()=>{
-  const h = document.documentElement;
-  const s = window.scrollY || h.scrollTop;
-  const pct = (s)/(h.scrollHeight - h.clientHeight) * 100;
-  $('#progressBar').style.width = pct + '%';
-  $('#floatTop').classList.toggle('show', s > 500);
+  if(!scrollTicking){
+    window.requestAnimationFrame(()=>{
+      const h = document.documentElement;
+      const s = window.scrollY || h.scrollTop;
+      const pct = (s)/(h.scrollHeight - h.clientHeight) * 100;
+      $('#progressBar').style.width = pct + '%';
+      $('#floatTop').classList.toggle('show', s > 500);
 
-  // Smooth parallax translation to the left for [Everyday Luxury -> Explore Collection]
-  const heroGroup = document.getElementById('heroScrollGroup');
-  if(heroGroup){
-    if(s < 700){
-      const factor = window.innerWidth < 768 ? 0.45 : 0.8;
-      const shift = s * factor;
-      const op = Math.max(0, 1 - (s / 480));
-      heroGroup.style.transform = `translate3d(-${shift}px, 0, 0)`;
-      heroGroup.style.opacity = op;
-    } else {
-      heroGroup.style.transform = `translate3d(-560px, 0, 0)`;
-      heroGroup.style.opacity = '0';
-    }
+      // Smooth parallax translation to the left for [Everyday Luxury -> Explore Collection]
+      const heroGroup = document.getElementById('heroScrollGroup');
+      if(heroGroup){
+        if(s < 700){
+          const factor = window.innerWidth < 768 ? 0.45 : 0.8;
+          const shift = s * factor;
+          const op = Math.max(0, 1 - (s / 480));
+          heroGroup.style.transform = `translate3d(-${shift}px, 0, 0)`;
+          heroGroup.style.opacity = op;
+        } else {
+          heroGroup.style.transform = `translate3d(-560px, 0, 0)`;
+          heroGroup.style.opacity = '0';
+        }
+      }
+      scrollTicking = false;
+    });
+    scrollTicking = true;
   }
 }, {passive:true});
 
@@ -1519,18 +1526,22 @@ $('#checkoutBtn').addEventListener('click', ()=>{
 $('#searchOpen').addEventListener('click', ()=>{ $('#searchOverlay').classList.add('open'); $('#searchInput').focus(); });
 $('#searchClose').addEventListener('click', ()=> $('#searchOverlay').classList.remove('open'));
 $('#searchOverlay').addEventListener('click', (e)=>{ if(e.target.id==='searchOverlay') $('#searchOverlay').classList.remove('open'); });
+let searchTimeout;
 $('#searchInput').addEventListener('input', (e)=>{
-  const q = e.target.value.trim().toLowerCase();
-  if(!q){ $('#searchResults').innerHTML=''; return; }
-  const results = PRODUCTS.filter(p=> p.name.toLowerCase().includes(q) || p.categoryName.toLowerCase().includes(q));
-  $('#searchResults').innerHTML = results.length ? results.map(p=>`
-    <div class="search-result-item" data-goto="${p.id}"><span>${p.name}</span><span>${fmt(p.price)}</span></div>
-  `).join('') : `<div class="search-result-item" style="color:var(--stone);">No styles found</div>`;
-  $all('[data-goto]').forEach(el=> el.addEventListener('click', ()=>{
-    searchQuery = q; $('#searchOverlay').classList.remove('open');
-    document.getElementById('shop').scrollIntoView({behavior:'smooth'});
-    renderProducts();
-  }));
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    const q = e.target.value.trim().toLowerCase();
+    if(!q){ $('#searchResults').innerHTML=''; return; }
+    const results = PRODUCTS.filter(p=> p.name.toLowerCase().includes(q) || p.categoryName.toLowerCase().includes(q));
+    $('#searchResults').innerHTML = results.length ? results.map(p=>`
+      <div class="search-result-item" data-goto="${p.id}"><span>${p.name}</span><span>${fmt(p.price)}</span></div>
+    `).join('') : `<div class="search-result-item" style="color:var(--stone);">No styles found</div>`;
+    $all('[data-goto]').forEach(el=> el.addEventListener('click', ()=>{
+      searchQuery = q; $('#searchOverlay').classList.remove('open');
+      document.getElementById('shop').scrollIntoView({behavior:'smooth'});
+      renderProducts();
+    }));
+  }, 250);
 });
 
 // Handle incoming search queries (e.g. from 404 search box)
