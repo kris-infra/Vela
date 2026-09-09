@@ -1269,34 +1269,47 @@ function renderProducts(){
 }
 
 function bindProductEvents(){
-  $all('[data-wish]').forEach(b=> b.addEventListener('click',(e)=>{
-    e.stopPropagation();
-    toggleWishlist(b.dataset.wish);
-  }));
+  // Intentionally empty. Event binding moved to a global delegated listener below.
+}
 
-  $all('[data-addcart]').forEach(b=> b.addEventListener('click',(e)=>{
+document.addEventListener('click', (e) => {
+  const wishBtn = e.target.closest('[data-wish]');
+  if(wishBtn){
     e.stopPropagation();
-    const p = PRODUCTS.find(x=>x.id===b.dataset.addcart);
+    toggleWishlist(wishBtn.dataset.wish);
+    return;
+  }
+
+  const addCartBtn = e.target.closest('[data-addcart]');
+  if(addCartBtn){
+    e.stopPropagation();
+    const p = PRODUCTS.find(x=>x.id===addCartBtn.dataset.addcart);
     if(!p.inStock){ showToast('Added to restock alert list'); return; }
     addToCart(p, p.sizes[0], p.colors[0], 1);
-  }));
+    return;
+  }
 
-  $all('[data-quickview]').forEach(b=> b.addEventListener('click',(e)=>{
+  const quickViewBtn = e.target.closest('[data-quickview]');
+  if(quickViewBtn){
     e.stopPropagation();
-    openQuickView(b.dataset.quickview);
-  }));
+    openQuickView(quickViewBtn.dataset.quickview);
+    return;
+  }
 
-  $all('.swatch').forEach(s=> s.addEventListener('click', (e)=>{
+  const swatch = e.target.closest('.swatch');
+  if(swatch && swatch.closest('.product-card')){
     e.stopPropagation();
-    const card = s.closest('.product-card');
+    const card = swatch.closest('.product-card');
     card.querySelectorAll('.swatch').forEach(x=>x.classList.remove('selected'));
-    s.classList.add('selected');
-  }));
+    swatch.classList.add('selected');
+    return;
+  }
 
-  $all('.product-card').forEach(card=> card.addEventListener('click', ()=>{
-    addRecentlyViewed(card.dataset.id);
-  }));
-}
+  const productCard = e.target.closest('.product-card');
+  if(productCard){
+    addRecentlyViewed(productCard.dataset.id);
+  }
+});
 
 $('#loadMoreBtn').addEventListener('click', ()=>{ visibleCount += 8; renderProducts(); });
 
