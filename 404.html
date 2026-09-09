@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page Not Found | VELA APPARELS</title>
+<meta name="description" content="The page you are looking for does not exist or has been moved. Explore the VELA APPARELS collection.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============ DESIGN TOKENS ============ */
+:root{
+  --ivory:#FBF6F4;
+  --ivory-2:#F3EBE7;
+  --charcoal:#29201E;
+  --charcoal-soft:#3D302D;
+  --stone:#94827E;
+  --stone-light:#E8DDD8;
+  --rose:#C47B80;
+  --rose-light:#DBA2A6;
+  --accent:#9E5358;
+  --white:#FFFFFF;
+  --font-display:'Fraunces', serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'IBM Plex Mono', monospace;
+  --radius-s:3px;
+  --radius-m:6px;
+  --shadow-soft: 0 12px 40px -12px rgba(41,32,30,0.18);
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+[data-theme="dark"]{
+  --ivory:#1A1413;
+  --ivory-2:#241D1B;
+  --charcoal:#FBF6F4;
+  --charcoal-soft:#F3EBE7;
+  --stone:#998783;
+  --stone-light:#423633;
+  --white:#2B211F;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:var(--font-body);
+  background:var(--ivory);
+  color:var(--charcoal);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  transition:background .4s var(--ease), color .4s var(--ease);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ============ HEADER ============ */
+header{
+  padding:22px 36px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--stone-light);
+  background:var(--ivory);
+}
+.logo{
+  font-family:var(--font-display);
+  font-size:22px;
+  letter-spacing:0.12em;
+  color:var(--charcoal);
+  text-decoration:none;
+  font-weight:600;
+}
+.logo span{
+  color:var(--rose);
+  font-style:italic;
+  font-weight:300;
+}
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+.btn-theme{
+  background:transparent;
+  border:1px solid var(--stone-light);
+  color:var(--charcoal);
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:15px;
+  transition:all .3s var(--ease);
+}
+.btn-theme:hover{border-color:var(--rose);color:var(--rose);}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:14px 28px;
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  font-weight:500;
+  text-decoration:none;
+  border-radius:var(--radius-s);
+  cursor:pointer;
+  transition:all .3s var(--ease);
+}
+.btn-rose{
+  background:var(--rose);
+  color:#FFFFFF;
+  border:1px solid var(--rose);
+}
+.btn-rose:hover{background:var(--accent);border-color:var(--accent);}
+.btn-outline{
+  background:transparent;
+  color:var(--charcoal);
+  border:1px solid var(--charcoal);
+}
+.btn-outline:hover{
+  background:var(--charcoal);
+  color:var(--ivory);
+}
+.btn-wa{
+  background:#25D366;
+  color:#FFFFFF;
+  border:1px solid #25D366;
+}
+.btn-wa:hover{background:#1EBE5D;border-color:#1EBE5D;}
+
+/* ============ 404 HERO ============ */
+.error-hero{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:80px 24px 60px;
+  position:relative;
+  overflow:hidden;
+}
+.error-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:radial-gradient(circle at 50% 35%, rgba(196, 123, 128, 0.18) 0%, transparent 60%), linear-gradient(135deg, var(--ivory) 0%, var(--ivory-2) 100%);
+}
+.error-content{
+  position:relative;
+  z-index:1;
+  max-width:680px;
+  margin:0 auto;
+}
+.error-code{
+  font-family:var(--font-display);
+  font-size:clamp(88px, 16vw, 160px);
+  line-height:0.95;
+  letter-spacing:-0.03em;
+  color:var(--rose);
+  opacity:0.88;
+  font-weight:300;
+  margin-bottom:14px;
+  user-select:none;
+}
+.error-eyebrow{
+  font-family:var(--font-mono);
+  font-size:11.5px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--stone);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+.error-eyebrow::before, .error-eyebrow::after{
+  content:'';
+  width:24px;
+  height:1px;
+  background:var(--stone);
+}
+.error-title{
+  font-family:var(--font-display);
+  font-size:clamp(28px, 4.5vw, 42px);
+  line-height:1.2;
+  margin-bottom:16px;
+  color:var(--charcoal);
+}
+.error-title em{
+  font-style:italic;
+  color:var(--rose);
+}
+.error-desc{
+  font-size:15px;
+  color:var(--stone);
+  line-height:1.65;
+  margin-bottom:32px;
+  max-width:540px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.error-actions{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:44px;
+}
+
+/* ============ SEARCH BOX ============ */
+.search-form{
+  max-width:440px;
+  margin:0 auto 60px;
+  display:flex;
+  border:1px solid var(--stone-light);
+  border-radius:var(--radius-s);
+  background:var(--white);
+  overflow:hidden;
+  transition:border-color .3s var(--ease);
+}
+.search-form:focus-within{border-color:var(--rose);}
+.search-input{
+  flex:1;
+  padding:14px 18px;
+  border:none;
+  outline:none;
+  background:transparent;
+  color:var(--charcoal);
+  font-family:var(--font-body);
+  font-size:13px;
+}
+.search-btn{
+  padding:0 20px;
+  background:var(--rose);
+  color:#FFFFFF;
+  border:none;
+  cursor:pointer;
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  transition:background .3s var(--ease);
+}
+.search-btn:hover{background:var(--accent);}
+
+/* ============ RECOVERY PICKS ============ */
+.recovery-section{
+  position:relative;
+  z-index:1;
+  max-width:1120px;
+  margin:0 auto 60px;
+  width:100%;
+}
+.recovery-head{
+  text-align:center;
+  margin-bottom:28px;
+}
+.recovery-head h3{
+  font-family:var(--font-display);
+  font-size:24px;
+  font-weight:400;
+  color:var(--charcoal);
+}
+.recovery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:20px;
+  padding:0 20px;
+}
+.pick-card{
+  background:var(--white);
+  border:1px solid var(--stone-light);
+  border-radius:var(--radius-m);
+  overflow:hidden;
+  text-decoration:none;
+  color:var(--charcoal);
+  display:flex;
+  flex-direction:column;
+  transition:all .35s var(--ease);
+}
+.pick-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-soft);
+  border-color:var(--rose-light);
+}
+.pick-img-wrap{
+  aspect-ratio:3/4;
+  overflow:hidden;
+  background:var(--ivory-2);
+}
+.pick-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s var(--ease);
+}
+.pick-card:hover .pick-img{
+  transform:scale(1.06);
+}
+.pick-info{
+  padding:14px;
+}
+.pick-cat{
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--stone);
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+}
+.pick-title{
+  font-size:13px;
+  font-weight:600;
+  margin:4px 0 8px;
+  color:var(--charcoal);
+}
+.pick-price{
+  font-family:var(--font-mono);
+  font-size:12px;
+  font-weight:600;
+  color:var(--rose);
+}
+
+/* ============ FOOTER ============ */
+footer{
+  padding:24px 36px;
+  border-top:1px solid var(--stone-light);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:12px;
+  color:var(--stone);
+  background:var(--ivory-2);
+  flex-wrap:wrap;
+  gap:12px;
+}
+footer a{color:var(--stone);text-decoration:none;}
+footer a:hover{color:var(--rose);}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">VELA <span>APPARELS</span></a>
+  <div class="header-actions">
+    <button class="btn-theme" id="themeToggle" aria-label="Toggle theme">☾</button>
+    <a href="index.html#shop" class="btn btn-outline" style="padding:8px 16px;font-size:11px;">View All Styles</a>
+  </div>
+</header>
+
+<main class="error-hero">
+  <div class="error-bg"></div>
+
+  <div class="error-content">
+    <div class="error-code">404</div>
+    <div class="error-eyebrow">Out of Catalog</div>
+    <h1 class="error-title">This piece isn't in our <em>wardrobe</em>.</h1>
+    <p class="error-desc">The link you followed might have expired, been renamed, or is temporarily out of season. Don't worry — our handcrafted essentials are just one click away.</p>
+
+    <div class="error-actions">
+      <a href="index.html#shop" class="btn btn-rose">Shop All Products</a>
+      <a href="index.html" class="btn btn-outline">Back to Home</a>
+      <a href="https://wa.me/919080296479?text=Hi%20Vela%20Apparels%2C%20I%20hit%20a%20404%20error%20and%20need%20help%20finding%20a%20product" target="_blank" class="btn btn-wa">💬 WhatsApp Stylist</a>
+    </div>
+
+    <form class="search-form" action="index.html" method="GET" id="searchForm">
+      <input type="text" name="search" class="search-input" placeholder="Search kurtas, hoodies, pyjama sets..." required>
+      <button type="submit" class="search-btn">Search</button>
+    </form>
+  </div>
+
+  <div class="recovery-section">
+    <div class="recovery-head">
+      <h3>Handpicked Popular Silhouettes</h3>
+    </div>
+    <div class="recovery-grid">
+      <a href="index.html#shop" class="pick-card">
+        <div class="pick-img-wrap">
+          <img src="images/m1-mens-kurta.jpg" alt="Men's Royal Navy Embroidered Long Kurta" class="pick-img" onerror="this.onerror=null;this.src='images/p2-heavyweight-tee.jpg'">
+        </div>
+        <div class="pick-info">
+          <div class="pick-cat">Men's Ethnic</div>
+          <div class="pick-title">Royal Navy Embroidered Long Kurta</div>
+          <div class="pick-price">₹1,499</div>
+        </div>
+      </a>
+
+      <a href="index.html#shop" class="pick-card">
+        <div class="pick-img-wrap">
+          <img src="images/w1-womens-anarkali.jpg" alt="Women's Blush Rose Embroidered Anarkali Kurta" class="pick-img" onerror="this.onerror=null;this.src='images/p1-waverly.jpg'">
+        </div>
+        <div class="pick-info">
+          <div class="pick-cat">Women's Ethnic</div>
+          <div class="pick-title">Blush Rose Embroidered Anarkali</div>
+          <div class="pick-price">₹1,899</div>
+        </div>
+      </a>
+
+      <a href="index.html#shop" class="pick-card">
+        <div class="pick-img-wrap">
+          <img src="images/w2-womens-saree.jpg" alt="Banarasi Zari Woven Silk Saree" class="pick-img" onerror="this.onerror=null;this.src='images/w1-womens-anarkali.jpg'">
+        </div>
+        <div class="pick-info">
+          <div class="pick-cat">Women's Ethnic</div>
+          <div class="pick-title">Banarasi Zari Woven Silk Saree</div>
+          <div class="pick-price">₹2,699</div>
+        </div>
+      </a>
+
+      <a href="index.html#shop" class="pick-card">
+        <div class="pick-img-wrap">
+          <img src="images/m2-mens-nehru-jacket.jpg" alt="Jacquard Woven Bundi Nehru Jacket" class="pick-img" onerror="this.onerror=null;this.src='images/m1-mens-kurta.jpg'">
+        </div>
+        <div class="pick-info">
+          <div class="pick-cat">Men's Ethnic</div>
+          <div class="pick-title">Jacquard Woven Bundi Nehru Jacket</div>
+          <div class="pick-price">₹1,699</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 VELA APPARELS Retail Co. Express Shipping across India.</span>
+  <div>
+    <a href="index.html#contact">Support</a> &nbsp;·&nbsp;
+    <a href="index.html#sizeguide">Fit Reference</a> &nbsp;·&nbsp;
+    <a href="https://wa.me/919080296479" target="_blank">WhatsApp Care</a>
+  </div>
+</footer>
+
+<script>
+// Theme toggle handler
+const themeBtn = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('vela-theme');
+if (savedTheme) {
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeBtn.textContent = savedTheme === 'dark' ? '☀' : '☾';
+}
+themeBtn.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('vela-theme', newTheme);
+  themeBtn.textContent = newTheme === 'dark' ? '☀' : '☾';
+});
+</script>
+
+</body>
+</html>
